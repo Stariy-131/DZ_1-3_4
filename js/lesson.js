@@ -14,3 +14,65 @@ phoneBtn.onclick = () => {
     }
 }
 
+/////////////////////////////////////////////////////////////////////////
+
+const tabsBlocks = document.querySelectorAll(".tab_content_block");
+const tabsItemsParent = document.querySelector(".tab_content_items")
+const tabsItems = document.querySelectorAll(".tab_content_item");
+
+let intervalId;
+// // console.log(tabsBlocks);
+// // console.log(tabsItems);
+
+const hide = () => {
+    tabsBlocks.forEach((tabBlock) => {
+        tabBlock.style.display = 'none';        
+    });
+    tabsItems.forEach((tabItem) => {
+        tabItem.classList.remove("tab_content_item_active")
+    });
+}
+
+const show = (i = 0) => {
+    tabsBlocks[i].style.display = "block";
+    tabsItems[i].classList.add("tab_content_item_active")
+}
+
+hide();
+show();
+
+tabsItemsParent.onclick = (event) => {
+    if (event.target.classList.contains("tab_content_item")) {
+        tabsItems.forEach((tabItem, tabItemIndex) => {
+            if (event.target === tabItem) {
+                clearInterval(intervalId);
+                hide();
+                show(tabItemIndex);
+                intervalId = setInterval(() => {
+                    tabItemIndex++;
+                    if (tabItemIndex > tabsItems.length - 1) {
+                        tabItemIndex = 0;
+                    }
+                    hide();
+                    show(tabItemIndex);
+                }, 3000);
+            }
+        });   
+    }
+};
+
+let i = 0; //index
+
+intervalId = setInterval(() => {
+
+    i++;
+    if (i > tabsItems.length - 1) {
+        i = 0;
+    }
+
+    hide();
+    show(i);
+}, 3000);
+
+/////////////////////////////////////////////////////////////////////////
+
