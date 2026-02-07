@@ -38,7 +38,7 @@ function scroll() {
     let documentHeight = document.documentElement.scrollHeight;
     let windowHeight = window.innerHeight;
     let scrollTop = window.scrollY;
-    console.log(scrollTop); // проверка работы отключения функции
+    // console.log(scrollTop); // проверка работы отключения функции
              
 
     if (scrollTop + windowHeight >= documentHeight && modalStopper === true) {
